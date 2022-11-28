@@ -89,7 +89,7 @@ const appDescriptions = [
   'Deliveries',
 ];
 
-const possibleTags = [
+const possibleReactions = [
   'html',
   'css',
   'javascript',
@@ -116,29 +116,29 @@ const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 const getRandomName = () =>
   `${getRandomArrItem(names)} ${getRandomArrItem(names)}`;
 
-// Function to generate random applications that we can add to the database. Includes application tags.
-const getRandomApplications = (int) => {
+// Function to generate random thoughts that we can add to the database. Includes thought reactions.
+const getRandomThoughts = (int) => {
   let results = [];
   for (let i = 0; i < int; i++) {
     results.push({
       published: Math.random() < 0.5,
       description: getRandomArrItem(appDescriptions),
       buildSuccess: Math.random() < 0.5,
-      tags: [...getApplicationTags(3)],
+      reactions: [...getThoughtReactions(3)],
     });
   }
   return results;
 };
 
-// Create the tags that will be added to each application
-const getApplicationTags = (int) => {
+// Create the reactions that will be added to each thought
+const getThoughtReactions = (int) => {
   if (int === 1) {
-    return getRandomArrItem(possibleTags);
+    return getRandomArrItem(possibleReactions);
   }
   const results = [];
   for (let i = 0; i < int; i++) {
     results.push({
-      tagBody: getRandomArrItem(possibleTags),
+      reactionBody: getRandomArrItem(possibleReactions),
       username: getRandomName(),
     });
   }
@@ -146,4 +146,4 @@ const getApplicationTags = (int) => {
 };
 
 // Export the functions for use in seed.js
-module.exports = { getRandomName, getRandomApplications };
+module.exports = { getRandomName, getRandomThoughts };
